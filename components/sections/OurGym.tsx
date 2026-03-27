@@ -241,7 +241,7 @@ export default function OurGym() {
               key={stat.label}
               className={`text-center border border-border p-5 ${
                 i === arr.length - 1
-                  ? "col-span-2 md:col-span-1 max-w-[calc(50%-12px)] w-full mx-auto"
+                  ? "col-span-2 md:col-span-1 max-w-[calc(50%-12px)] md:max-w-none w-full mx-auto"
                   : ""
               }`}
             >
