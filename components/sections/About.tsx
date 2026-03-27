@@ -1,7 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { useInView } from "@/hooks/useInView";
-import { FaHeart, FaImage, FaMedal } from "react-icons/fa";
+import { FaHeart, FaMedal } from "react-icons/fa";
+
+import treasureDriveFitnessGym from "@/public/images/treasure-drive-fitness-gym-view4.jpg";
+import treasureDriveFitnessMaria from "@/public/images/maria-competing-3.jpg";
 
 export default function About() {
   const [sectionRef, isInView] = useInView({ threshold: 0.15 });
@@ -17,8 +21,7 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Copy */}
           <div className={isInView ? "animate-fade-in-up" : "opacity-0"}>
-            <p className="flex items-center gap-2 font-display text-accent text-sm tracking-[0.35em] uppercase mb-4">
-              <span className="inline-block w-2 h-2 rounded-full bg-accent" aria-hidden="true" />
+            <p className="flex items-center gap-2 font-display text-accent text-lg tracking-[0.3em] uppercase mb-4">
               About the gym
             </p>
             <h2 className="font-display text-4xl sm:text-5xl md:text-6xl text-text-primary uppercase tracking-wide leading-[1.05] mb-6">
@@ -37,7 +40,7 @@ export default function About() {
                   Champion heritage
                 </h3>
                 <p className="text-sm text-text-muted leading-relaxed">
-                  Coaching rooted in real competitive experience—not trends.
+                  Coaching rooted in real competitive experience.
                 </p>
               </div>
               <div className="rounded-2xl border border-border bg-surface p-5 shadow-sm">
@@ -58,13 +61,23 @@ export default function About() {
           <div
             className={`grid grid-cols-2 gap-3 sm:gap-4 ${isInView ? "animate-fade-in-up delay-100" : "opacity-0"}`}
           >
-            <div className="col-span-2 relative rounded-2xl overflow-hidden border border-border bg-surface-alt aspect-[16/10] flex flex-col items-center justify-center gap-2 text-text-muted">
-              <FaImage className="w-12 h-12 opacity-40" aria-hidden="true" />
-              <span className="text-xs font-medium uppercase tracking-widest">Gym floor — photo soon</span>
+            <div className="col-span-2 relative rounded-2xl overflow-hidden border border-border aspect-[16/10]">
+              <Image
+                src={treasureDriveFitnessGym}
+                alt="Treasure Drive Fitness gym floor"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
             </div>
-            <div className="relative rounded-2xl overflow-hidden border border-border bg-surface-alt aspect-square flex flex-col items-center justify-center gap-2 text-text-muted">
-              <FaImage className="w-10 h-10 opacity-40" aria-hidden="true" />
-              <span className="text-xs font-medium uppercase tracking-widest text-center px-2">Coach — photo soon</span>
+            <div className="relative rounded-2xl overflow-hidden border border-border aspect-square">
+              <Image
+                src={treasureDriveFitnessMaria}
+                alt="Maria competing"
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 1024px) 50vw, 25vw"
+              />
             </div>
             <div className="relative rounded-2xl overflow-hidden bg-accent flex flex-col items-center justify-center aspect-square p-6 text-center text-text-inverse">
               <p className="font-display text-xs tracking-[0.3em] uppercase text-text-inverse/80 mb-2">Founded by</p>
