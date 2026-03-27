@@ -17,19 +17,29 @@ export default function Instagram() {
   const [sectionRef, isInView] = useInView({ threshold: 0.15 });
 
   useEffect(() => {
+    const SCRIPT_SRC = "https://www.instagram.com/embed.js";
+    const processEmbed = () => window.instgrm?.Embeds?.process();
+
     const existing = document.querySelector(
-      'script[src="https://www.instagram.com/embed.js"]'
+      `script[src="${SCRIPT_SRC}"]`
     ) as HTMLScriptElement | null;
 
     if (existing) {
-      window.instgrm?.Embeds?.process();
+      if (window.instgrm?.Embeds) {
+        // Script already loaded — process immediately
+        processEmbed();
+      } else {
+        // Script tag is in the DOM but still loading — wait for it
+        existing.addEventListener("load", processEmbed);
+        return () => existing.removeEventListener("load", processEmbed);
+      }
       return;
     }
 
     const script = document.createElement("script");
-    script.src = "https://www.instagram.com/embed.js";
+    script.src = SCRIPT_SRC;
     script.async = true;
-    script.onload = () => window.instgrm?.Embeds?.process();
+    script.onload = processEmbed;
     document.body.appendChild(script);
   }, []);
 

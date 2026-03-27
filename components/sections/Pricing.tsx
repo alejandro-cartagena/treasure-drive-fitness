@@ -47,7 +47,7 @@ function PricingCard({
             <span className="text-text-muted text-sm mb-2 uppercase tracking-wider">total</span>
           </div>
           <p className="mt-2 text-sm text-text-muted">
-            Instead of <span className="line-through">${plan.compareAtPrice}</span>
+            Instead of ${plan.compareAtPrice}
           </p>
         </div>
       ) : (
@@ -133,13 +133,6 @@ export default function Pricing() {
           </div>
         </div>
 
-        <p className={`text-center mt-10 text-sm text-text-muted ${isInView ? "animate-fade-in delay-500" : "opacity-0"}`}>
-          All memberships include a complimentary fitness assessment.{" "}
-          <a href={`mailto:${siteConfig.email}`} className="text-accent hover:underline">
-            Contact us
-          </a>{" "}
-          for corporate or group pricing.
-        </p>
       </div>
     </section>
   );

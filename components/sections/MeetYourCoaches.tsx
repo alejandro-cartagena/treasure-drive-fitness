@@ -1,7 +1,12 @@
 "use client";
 
-import { FaCheckCircle, FaDumbbell, FaHeartbeat, FaImage, FaShieldAlt } from "react-icons/fa";
+import Image from "next/image";
+import { FaCheckCircle, FaDumbbell, FaHeartbeat, FaShieldAlt } from "react-icons/fa";
 import { useInView } from "@/hooks/useInView";
+
+import treasureDriveFitnessMaria from "@/public/images/maria-pose-2.jpg";
+import treasureDriveFitnessNico from "@/public/images/nico-pose.jpg";
+import treasureDriveFitnessJack from "@/public/images/treasure-drive-fitness-work-out-2.jpg";
 
 const coaches = [
   {
@@ -14,30 +19,36 @@ const coaches = [
       "Former competitive bodybuilder",
     ],
     icon: FaDumbbell,
+    image: treasureDriveFitnessMaria,
+    imageAlt: "Maria, personal trainer at Treasure Drive Fitness",
   },
   {
     name: "Nico",
     role: "Personal Trainer",
     focus: "Sustainable fat loss, mobility, and long-term training habits.",
     qualifications: [
-      "ACE Certified Personal Trainer",
+      "NASM Certified Personal Trainer",
       "Corrective Exercise Specialist",
       "Certified in mobility and recovery methods",
     ],
     icon: FaHeartbeat,
+    image: treasureDriveFitnessNico,
+    imageAlt: "Nico, personal trainer at Treasure Drive Fitness",
   },
   {
     name: "Jack",
     role: "Personal Trainer",
     focus: "Athletic performance, conditioning, and movement quality.",
     qualifications: [
-      "NSCA Certified Strength & Conditioning Specialist",
+      "NASM Certified Personal Trainer",
       "CPR/AED Certified",
       "Functional movement and injury-prevention specialist",
     ],
     icon: FaShieldAlt,
+    image: treasureDriveFitnessJack,
+    imageAlt: "Jack, personal trainer at Treasure Drive Fitness",
   },
-] as const;
+];
 
 export default function MeetYourCoaches() {
   const [sectionRef, isInView] = useInView({ threshold: 0.15 });
@@ -51,7 +62,7 @@ export default function MeetYourCoaches() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`text-center mb-14 ${isInView ? "animate-fade-in-up" : "opacity-0"}`}>
-          <p className="font-display text-accent text-sm tracking-[0.35em] uppercase mb-3">Team Treasure Drive</p>
+          <p className="font-display text-accent text-lg tracking-[0.3em] uppercase mb-3">Team Treasure Drive</p>
           <h2 className="font-display text-4xl md:text-6xl text-text-primary uppercase tracking-wide mb-4">
             Meet Your Coaches
           </h2>
@@ -75,12 +86,14 @@ export default function MeetYourCoaches() {
                   ${isInView ? `animate-fade-in-up ${delayClass}` : "opacity-0"}
                 `}
               >
-                <div
-                  className="mb-5 aspect-[4/3] w-full rounded-xl border border-dashed border-border bg-surface-alt flex flex-col items-center justify-center gap-2 text-text-muted"
-                  aria-hidden="true"
-                >
-                  <FaImage className="w-10 h-10 opacity-45" aria-hidden="true" />
-                  <span className="text-[10px] sm:text-xs font-medium uppercase tracking-widest">Coach photo soon</span>
+                <div className="mb-5 relative aspect-[3/3] w-full rounded-xl overflow-hidden border border-border">
+                  <Image
+                    src={coach.image}
+                    alt={coach.imageAlt}
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
                 </div>
 
                 <div className="w-11 h-11 rounded-full bg-accent/15 text-accent flex items-center justify-center mb-5">

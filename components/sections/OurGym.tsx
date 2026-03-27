@@ -1,9 +1,25 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
 import { useInView } from "@/hooks/useInView";
 import { siteConfig } from "@/config/site";
-import { FaChevronLeft, FaChevronRight, FaImage, FaPlay } from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight, FaPlay, FaTimes } from "react-icons/fa";
+import gymView1 from "@/public/images/treasure-drive-fitness-gym-view1.jpg";
+import gymView2 from "@/public/images/treasure-drive-fitness-gym-view2.jpg";
+import gymView3 from "@/public/images/treasure-drive-fitness-gym-view3.jpg";
+import equipment from "@/public/images/treasure-drive-fitness-equipment.jpg";
+import equipment2 from "@/public/images/treasure-drive-fitness-equipment-2.jpg";
+import cardioEquipment3 from "@/public/images/treasure-drive-fitness-cardio-equipment3.jpg";
+import cardioEquipment4 from "@/public/images/treasure-drive-fitness-cardio-equipment4.jpg";
+import lifting from "@/public/images/treasure-drive-fitness-lifting.jpg";
+import lifting2 from "@/public/images/treasure-drive-fitness-lifting2.jpg";
+import training from "@/public/images/treasure-drive-fitness-training.jpg";
+import workOut from "@/public/images/treasure-drive-fitness-work-out.jpg";
+import workOut2 from "@/public/images/treasure-drive-fitness-work-out-2.jpg";
+import workOut3 from "@/public/images/treasure-drive-fitness-work-out-3.jpg";
+import workOut4 from "@/public/images/treasure-drive-fitness-work-out-4.jpg";
+import treadmill from "@/public/images/treasure-drive-fitness-treadmill.jpg";
 
 const TOUR_VIDEO_PLACEHOLDER = {
   title: "Gym Tour Video",
@@ -11,16 +27,38 @@ const TOUR_VIDEO_PLACEHOLDER = {
 };
 
 const GYM_CAROUSEL_ITEMS = [
-  { label: "Main Training Floor", gradient: "from-black via-text-secondary to-black" },
-  { label: "Strength Area", gradient: "from-accent via-accent-hover to-black" },
-  { label: "Cardio Zone", gradient: "from-text-primary via-text-secondary to-surface-alt" },
-  { label: "Recovery Corner", gradient: "from-black via-accent to-accent-hover" },
-  { label: "Functional Space", gradient: "from-text-primary via-black to-surface-alt" },
+  { label: "Main Training Floor", image: gymView1, imageAlt: "Main training floor at Treasure Drive Fitness" },
+  { label: "Gym View", image: gymView2, imageAlt: "Gym view at Treasure Drive Fitness" },
+  { label: "Gym Space", image: gymView3, imageAlt: "Gym space at Treasure Drive Fitness" },
+  { label: "Equipment", image: equipment, imageAlt: "Fitness equipment at Treasure Drive Fitness" },
+  { label: "Equipment Area", image: equipment2, imageAlt: "Equipment area at Treasure Drive Fitness" },
+  { label: "Cardio Equipment", image: cardioEquipment3, imageAlt: "Cardio equipment at Treasure Drive Fitness" },
+  { label: "Cardio Zone", image: cardioEquipment4, imageAlt: "Cardio zone at Treasure Drive Fitness" },
+  { label: "Lifting", image: lifting, imageAlt: "Weight lifting at Treasure Drive Fitness" },
+  { label: "Strength Training", image: lifting2, imageAlt: "Strength training at Treasure Drive Fitness" },
+  { label: "Training", image: training, imageAlt: "Training at Treasure Drive Fitness" },
+  { label: "Workout", image: workOut, imageAlt: "Workout at Treasure Drive Fitness" },
+  { label: "Workout Space", image: workOut2, imageAlt: "Workout space at Treasure Drive Fitness" },
+  { label: "Training Floor", image: workOut3, imageAlt: "Training floor at Treasure Drive Fitness" },
+  { label: "Fitness Area", image: workOut4, imageAlt: "Fitness area at Treasure Drive Fitness" },
+  { label: "Treadmills", image: treadmill, imageAlt: "Treadmills at Treasure Drive Fitness" },
 ] as const;
 
 export default function OurGym() {
   const [sectionRef, isInView] = useInView();
   const [activeIndex, setActiveIndex] = useState(0);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxIndex(null);
+      if (e.key === "ArrowRight") setLightboxIndex((i) => ((i ?? 0) + 1) % GYM_CAROUSEL_ITEMS.length);
+      if (e.key === "ArrowLeft") setLightboxIndex((i) => ((i ?? 0) - 1 + GYM_CAROUSEL_ITEMS.length) % GYM_CAROUSEL_ITEMS.length);
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [lightboxIndex]);
 
   const visibleItems = useMemo(() => {
     return Array.from({ length: 3 }, (_, offset) => {
@@ -69,7 +107,7 @@ export default function OurGym() {
 
         {/* Video placeholder */}
         <div
-          className={`relative overflow-hidden rounded-2xl border border-border bg-surface ${
+          className={`relative overflow-hidden rounded-2xl border border-border bg-surface mb-20 ${
             isInView ? "animate-fade-in delay-100" : "opacity-0"
           }`}
         >
@@ -148,20 +186,23 @@ export default function OurGym() {
                 {visibleItems.map((item) => (
                   <article
                     key={item.label}
-                    className="relative overflow-hidden rounded-xl border border-border bg-surface group"
+                    className="relative overflow-hidden rounded-xl border border-border bg-surface group cursor-pointer"
+                    onClick={() => setLightboxIndex(GYM_CAROUSEL_ITEMS.indexOf(item))}
                   >
-                    <div className={`h-56 sm:h-64 md:h-72 bg-gradient-to-br ${item.gradient}`} aria-hidden="true" />
+                    <div className="relative h-56 sm:h-64 md:h-96">
+                      <Image
+                        src={item.image}
+                        alt={item.imageAlt}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                    </div>
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
-                    <div className="absolute inset-0 p-5 flex flex-col justify-between">
-                      <div className="w-10 h-10 rounded-full bg-white/15 backdrop-blur-sm text-text-inverse flex items-center justify-center">
-                        <FaImage className="w-4 h-4" aria-hidden="true" />
-                      </div>
-                      <div>
-                        <p className="font-display text-xl sm:text-2xl uppercase tracking-wide text-text-inverse">
-                          {item.label}
-                        </p>
-                        <p className="text-xs uppercase tracking-widest text-text-inverse/70 mt-1">Photo placeholder</p>
-                      </div>
+                    <div className="absolute inset-0 p-5 flex flex-col justify-end">
+                      <p className="font-display text-xl sm:text-2xl uppercase tracking-wide text-text-inverse drop-shadow-lg">
+                        {item.label}
+                      </p>
                     </div>
                   </article>
                 ))}
@@ -212,6 +253,58 @@ export default function OurGym() {
           Full media gallery coming soon — visit us in person at {siteConfig.location}
         </p>
       </div>
+
+      {/* Lightbox */}
+      {lightboxIndex !== null && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
+          onClick={() => setLightboxIndex(null)}
+        >
+          <button
+            type="button"
+            className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/60 border border-white/20 text-white flex items-center justify-center hover:bg-black/80 transition-colors"
+            onClick={(e) => { e.stopPropagation(); setLightboxIndex(null); }}
+            aria-label="Close lightbox"
+          >
+            <FaTimes className="w-4 h-4" />
+          </button>
+
+          <button
+            type="button"
+            className="absolute left-4 z-10 w-10 h-10 rounded-full bg-black/60 border border-white/20 text-white flex items-center justify-center hover:border-accent transition-colors"
+            onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex - 1 + GYM_CAROUSEL_ITEMS.length) % GYM_CAROUSEL_ITEMS.length); }}
+            aria-label="Previous image"
+          >
+            <FaChevronLeft className="w-4 h-4" />
+          </button>
+
+          <div
+            className="relative w-full max-w-4xl max-h-[85vh] mx-16"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              src={GYM_CAROUSEL_ITEMS[lightboxIndex].image}
+              alt={GYM_CAROUSEL_ITEMS[lightboxIndex].imageAlt}
+              className="object-contain max-h-[85vh] w-full"
+              width={1200}
+              height={800}
+              priority
+            />
+            <p className="text-center text-white/70 text-sm mt-3 uppercase tracking-widest">
+              {GYM_CAROUSEL_ITEMS[lightboxIndex].label} &mdash; {lightboxIndex + 1} / {GYM_CAROUSEL_ITEMS.length}
+            </p>
+          </div>
+
+          <button
+            type="button"
+            className="absolute right-4 z-10 w-10 h-10 rounded-full bg-black/60 border border-white/20 text-white flex items-center justify-center hover:border-accent transition-colors"
+            onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex + 1) % GYM_CAROUSEL_ITEMS.length); }}
+            aria-label="Next image"
+          >
+            <FaChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+      )}
     </section>
   );
 }
