@@ -236,8 +236,15 @@ export default function OurGym() {
             { value: "5,000+", label: "Sq Ft" },
             { value: "50+", label: "Equipment Pieces" },
             { value: "24/7", label: "Hours of Operation" },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center border border-border p-5">
+          ].map((stat, i, arr) => (
+            <div
+              key={stat.label}
+              className={`text-center border border-border p-5 ${
+                i === arr.length - 1
+                  ? "col-span-2 md:col-span-1 max-w-[calc(50%-12px)] w-full mx-auto"
+                  : ""
+              }`}
+            >
               <div className="font-display text-3xl md:text-4xl text-accent tracking-wide">
                 {stat.value}
               </div>

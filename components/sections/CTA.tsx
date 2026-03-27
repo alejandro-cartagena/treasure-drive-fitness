@@ -12,6 +12,9 @@ export default function CTA() {
       className="relative py-20 md:py-28 bg-accent overflow-hidden"
       aria-label="Call to action"
     >
+      {/* Dark overlay to tone down the red */}
+      <div className="absolute inset-0 bg-black/10" aria-hidden="true" />
+
       {/* Background texture — subtle diagonal lines */}
       <div
         className="absolute inset-0 opacity-10"
@@ -46,7 +49,7 @@ export default function CTA() {
             isInView ? "animate-fade-in-up delay-200" : "opacity-0"
           }`}
         >
-          Take the first step today. Book your free consultation and let our coaches build a plan made for you.
+          Take the first step to your fitness journey today.
         </p>
         <div
           className={`flex flex-col sm:flex-row items-center justify-center gap-4 ${
@@ -57,13 +60,7 @@ export default function CTA() {
             href="/#pricing"
             className="inline-flex items-center justify-center px-10 py-4 bg-background text-accent text-sm font-semibold uppercase tracking-widest hover:bg-surface transition-colors duration-200 w-full sm:w-auto"
           >
-            Book a Free Consultation
-          </a>
-          <a
-            href={`tel:${siteConfig.phone.replace(/\D/g, "")}`}
-            className="inline-flex items-center justify-center px-10 py-4 border-2 border-text-inverse/40 text-text-inverse text-sm font-semibold uppercase tracking-widest hover:border-text-inverse hover:bg-text-inverse/10 transition-colors duration-200 w-full sm:w-auto"
-          >
-            Call {siteConfig.phone}
+            Get Started
           </a>
         </div>
       </div>

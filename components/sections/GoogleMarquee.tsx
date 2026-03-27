@@ -9,7 +9,6 @@ interface GoogleReview {
   name: string;
   initials: string;
   rating: number;
-  timeAgo: string;
   text: string;
 }
 
@@ -18,110 +17,103 @@ interface GoogleReview {
 const reviewsRow1: GoogleReview[] = [
   {
     id: "1",
-    name: "Francheska Hernandez",
-    initials: "FH",
+    name: "Estrella Pereira",
+    initials: "EP",
     rating: 5,
-    timeAgo: "4 months ago",
-    text: "I've been coming to this gym for a few months now and I'm really impressed! The equipment is always clean and well-maintained, and there's plenty of space even during peak hours. The trainers are super knowledgeable and motivating — they really help you reach your goals without feeling overwhelmed. I've noticed great results already. Highly recommend this gym to anyone serious about their fitness!",
+    text: "Love this gym! The people, tha ambiance, the machines and the music 💪🏼",
   },
   {
     id: "2",
-    name: "Yuly Murillo",
+    name: "Andrea Ab",
     initials: "YM",
     rating: 5,
-    timeAgo: "4 months ago",
-    text: "Exelente el mejor gym de Allaphata se los recomiendo lo mejor gracias ala entrenadora por mis cambios",
+    text: "Excelente gimnasio en North Bay Village con una vista espectacular que realmente motiva a entrenar. " +
+    "Lo mejor, sin dudas, es la comunidad: gente respetuosa, buen clima y un ambiente que te hace sentir cómodo desde el primer día. " +
+    "Está abierto 24/7, ideal para quienes entrenamos fuera de horarios tradicionales, y además cuenta con parking gratuito, algo clave en Miami. " +
+    "Equipamiento completo, buena energía y una ubicación privilegiada. " +
+    "Totalmente recomendado si buscás constancia, comodidad y un entorno inspirador para entrenar.",
   },
   {
     id: "3",
-    name: "Osmany MG",
-    initials: "OM",
+    name: "James Lindsey",
+    initials: "JL",
     rating: 5,
-    timeAgo: "4 months ago",
-    text: "Excelente lugar. Equipos y servicios al 100 por ciento. Muy recomendable.",
+    text: "Literally my favorite gym. Thank you for being 24hours when practically no other gym is around here. It’s so important.",
   },
   {
     id: "4",
-    name: "Senen Delgado",
-    initials: "SD",
+    name: "Azucena Flores",
+    initials: "AF",
     rating: 5,
-    timeAgo: "11 months ago",
-    text: "Excelente Gym. Horas impeccable ya que puedes entrenar desde las 430 am que estan abierto. Es un Gym old school. El Cual me encanta porque nunca a tenido aire condicionado. En un gym se viene a sudar no a tirase selfie. El servicio al cliente es excellent. Maquinas de la vieja escuela. The best in the area.",
+    text: "Excelente ubicación " +
+    "Excelentes máquinas! " +
+    "Muy buena atención ",
   },
   {
     id: "9",
-    name: "georgia Anderson",
-    initials: "GA",
+    name: "Yrina Albarracin",
+    initials: "YA",
     rating: 5,
-    timeAgo: "2 years ago",
-    text: "I called this morning didn't get a answer. Within five minutes I got a call back. The person was very pleasant and answered all my questions. I asked could I stop by she said absolutely. I did and was very impressed, the visit was very welcoming and I will definitely be joining. First impressions are everything.",
+    text: "Muy buen ambiente, con todas las máquinas que necesitas para meterle power a tu emtrenaniento. Su dueña es muy agradable, y los encargados también. Definitivamente 5⭐",
   },
   {
     id: "10",
-    name: "Ashanti Hernandez",
-    initials: "AH",
+    name: "Dagoberto González",
+    initials: "DG",
     rating: 5,
-    timeAgo: "6 years ago",
-    text: "At Iramis fitness center I have recollected my mental and physical strength. Providing me with the proper fundamentals in training and supplying me with confidence and reassurance of my potential. I recommend this fitness center for any level you may be at. I have learned proper technique and the correct nutrition I need for my body. Get out there and prove to yourself you have what it takes. Iramis will take you there! It's not only a professional fitness center but also a wonderful and unique family community.",
+    text: "Excelente atención, buenas condiciones, la vista al océano mientras ejercitas…no tiene comparación! Excelente gym!",
   },
   {
     id: "11",
-    name: "Milton Hernandez",
-    initials: "MH",
+    name: "Miguel Martinez",
+    initials: "MM",
     rating: 5,
-    timeAgo: "7 months ago",
-    text: "It's got all you need, nice people and the temperature is perfect for training.",
+    text: "Leaving YOUFIT to come here was the best thing I did.Good energy,literally feels like family here.",
   },
 ];
 
 const reviewsRow2: GoogleReview[] = [
   {
     id: "5",
-    name: "Anaela Rosales",
-    initials: "AR",
+    name: "Francesca Sanna",
+    initials: "FS",
     rating: 5,
-    timeAgo: "6 months ago",
-    text: "I love it here , they have the best machines ,and the lady is really nice , good music too",
+    text: "I really love the vibe and the energy everyone give to the place! The view is something amazing! Nico and Jack are really professional and helpful!!!",
   },
   {
     id: "6",
-    name: "Jacob Alvarez",
-    initials: "JA",
+    name: "Juan Jose Beltrán Perez",
+    initials: "JP",
     rating: 5,
-    timeAgo: "11 months ago",
-    text: "Buena buena gente íramis gym es un gimnasio espacioso bueno a mi personal me gusta el ambiente tiene de toda máquina me siento bien así que vamos hay que visitarlo el personal es calidad vamos hay que animarse a visitar le agradeceríamos muchísimo mucho",
+    text: "Excelente lugar mi casa de entrenamiento, los muchachos encargados amables y atentos!",
   },
   {
     id: "7",
-    name: "Dayana Suarez",
-    initials: "DS",
+    name: "Christian Alvarez",
+    initials: "CA",
     rating: 5,
-    timeAgo: "a year ago",
-    text: "Amazing gym owner Iramis is a very lovely person and will train you to meet your expectations. 100% recommended zero doubts.",
+    text: "Muy increíble super me da gusto estoy contento",
   },
   {
     id: "8",
-    name: "Louis Hernandez",
-    initials: "LH",
+    name: "Katy Savany",
+    initials: "KS",
     rating: 5,
-    timeAgo: "11 months ago",
-    text: "First time coming here the vibes were good was well equipped with all types of gym equipment and the people were super nice",
+    text: "I love this little gym, it’s close to my house so no excuses anymore. Even tho it’s quite small, it has everything you need and more. Come and get your abs on😄",
   },
   {
     id: "12",
-    name: "Aldo Castillo",
-    initials: "AC",
+    name: "Tony Hai",
+    initials: "TH",
     rating: 5,
-    timeAgo: "2 years ago",
-    text: "Great gym have the best music and the people that work there are amazing the atmosphere is very energetic and positive I wouldn't go to any other gym",
+    text: "Great cozy club with a fantastic view.   Great personal trainers.   Owners are very nice and hospitable.  Not too busy.  And all the cardio & weight training equipment that you need.",
   },
   {
     id: "13",
-    name: "Jose Hernandez",
-    initials: "JH",
+    name: "Magali Robotti",
+    initials: "MR",
     rating: 5,
-    timeAgo: "3 years ago",
-    text: "An amazing place where I started as a 14 year old and it impressed me the people are so nice and the gym is very clean and organized I'm glad to have chosen Iramis.",
+    text: "Excelente gimnasio! Los aparatos, su ubicación y la calidez de Pablo su dueño. Lo recomiendo sin dudas!!",
   },
 ];
 
@@ -207,9 +199,6 @@ function ReviewCard({ review }: { review: GoogleReview }) {
         <Avatar initials={review.initials} />
         <div className="min-w-0">
           <p className="truncate text-sm font-semibold text-text-primary">{review.name}</p>
-          <p className="text-xs text-text-muted">
-            {review.timeAgo} · Google Review
-          </p>
         </div>
       </div>
     </article>
@@ -249,7 +238,7 @@ export default function GoogleMarquee() {
       className="relative w-full overflow-hidden bg-surface py-16 md:py-20 border-y border-border"
     >
       <div className="mx-auto max-w-3xl px-4 sm:px-6 text-center">
-        <span className="inline-block font-display text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+        <span className="font-display text-accent text-lg tracking-[0.3em] uppercase mb-2">
           Member Reviews
         </span>
         <h2 className="font-display mt-4 text-3xl uppercase tracking-wide text-text-primary sm:text-4xl md:text-5xl">

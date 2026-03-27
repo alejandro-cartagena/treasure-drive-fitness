@@ -33,17 +33,17 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Brand — same full-color logo as navbar (no invert on dark bg) */}
-          <div className="flex flex-col gap-4">
-            <a href="/" className="inline-flex w-fit" aria-label={siteConfig.name}>
+          <div className="flex flex-col gap-4 items-center md:items-start">
+            <a href="/" className="inline-flex sm:-ml-6" aria-label={siteConfig.name}>
               <Image
                 src="/images/logo.png"
                 alt={siteConfig.name}
                 width={120}
                 height={120}
-                className="h-20 sm:h-24 w-auto object-contain"
+                className="h-28 sm:h-33 w-auto object-contain"
               />
             </a>
-            <p className="text-sm text-text-muted leading-relaxed max-w-xs">
+            <p className="text-sm text-text-muted leading-relaxed max-w-xs text-center md:text-left">
               {siteConfig.description}
             </p>
             <div className="flex items-center gap-3 mt-1">
@@ -63,11 +63,11 @@ export default function Footer() {
           </div>
 
           {/* Navigation */}
-          <div>
+          <div className="flex flex-col items-center md:items-start">
             <h3 className="font-display text-xl tracking-widest uppercase mb-5 text-text-inverse">
               Quick Links
             </h3>
-            <ul className="flex flex-col gap-3">
+            <ul className="flex flex-col gap-3 items-center md:items-start">
               {siteConfig.navigation.map((item) => (
                 <li key={item.label}>
                   <a
@@ -82,11 +82,11 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div>
+          <div className="flex flex-col items-center md:items-start">
             <h3 className="font-display text-xl tracking-widest uppercase mb-5 text-text-inverse">
               Contact
             </h3>
-            <ul className="flex flex-col gap-3 text-sm text-text-muted">
+            <ul className="flex flex-col gap-3 text-sm text-text-muted items-center md:items-start">
               <li>
                 <a
                   href={`mailto:${siteConfig.email}`}
@@ -103,7 +103,19 @@ export default function Footer() {
                   {siteConfig.phone}
                 </a>
               </li>
-              <li>{siteConfig.location}</li>
+              <li className="text-center md:text-left">
+                <a
+                  href={`https://maps.google.com/?q=${encodeURIComponent(
+                    `${siteConfig.address.line1}, ${siteConfig.address.city}, ${siteConfig.address.state} ${siteConfig.address.zip}`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-accent transition-colors duration-150 leading-relaxed"
+                >
+                  {siteConfig.address.line1}<br />
+                  {siteConfig.address.city}, {siteConfig.address.state} {siteConfig.address.zip}
+                </a>
+              </li>
             </ul>
           </div>
         </div>

@@ -8,11 +8,20 @@ export const siteConfig = {
   name: "Treasure Drive Fitness",
   tagline: ["Your Fitness.", "Your Schedule"],
   description: "24/7 Gym Access",
-  email: "coach@eliteperformance.com",
-  phone: "305-555-1234",
+  email: "",
+  phone: "(786)-277-1533",
   location: "North Bay Village, FL",
-  rating: 4.9,
-  reviewCount: 150,
+  rating: 4.5,
+  reviewCount: 100,
+
+   /** Physical address */
+   address: {
+    line1: "7601 E Treasure Dr",
+    city: "North Bay Village",
+    state: "FL",
+    zip: "33141",
+  },
+
   navigation: [
     { label: "About", href: "/#about" },
     { label: "Pricing", href: "/#pricing" },
