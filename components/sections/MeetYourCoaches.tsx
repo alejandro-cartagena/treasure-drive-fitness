@@ -16,18 +16,7 @@ const coaches = [
     icon: FaDumbbell,
   },
   {
-    name: "Jason",
-    role: "Personal Trainer",
-    focus: "Athletic performance, conditioning, and movement quality.",
-    qualifications: [
-      "NSCA Certified Strength & Conditioning Specialist",
-      "CPR/AED Certified",
-      "Functional movement and injury-prevention specialist",
-    ],
-    icon: FaShieldAlt,
-  },
-  {
-    name: "David",
+    name: "Nico",
     role: "Personal Trainer",
     focus: "Sustainable fat loss, mobility, and long-term training habits.",
     qualifications: [
@@ -36,6 +25,17 @@ const coaches = [
       "Certified in mobility and recovery methods",
     ],
     icon: FaHeartbeat,
+  },
+  {
+    name: "Jack",
+    role: "Personal Trainer",
+    focus: "Athletic performance, conditioning, and movement quality.",
+    qualifications: [
+      "NSCA Certified Strength & Conditioning Specialist",
+      "CPR/AED Certified",
+      "Functional movement and injury-prevention specialist",
+    ],
+    icon: FaShieldAlt,
   },
 ] as const;
 

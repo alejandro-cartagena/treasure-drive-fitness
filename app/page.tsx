@@ -8,6 +8,7 @@ import Pricing from "@/components/sections/Pricing";
 import OurGym from "@/components/sections/OurGym";
 import Testimonials from "@/components/sections/Testimonials";
 import GoogleMarquee from "@/components/sections/GoogleMarquee";
+import Instagram from "@/components/sections/Instagram";
 import CTA from "@/components/sections/CTA";
 
 export default function Home() {
@@ -22,6 +23,7 @@ export default function Home() {
         <MeetYourCoaches />
         <Pricing />
         <GoogleMarquee />
+        <Instagram />
         <CTA />
       </main>
       <Footer />

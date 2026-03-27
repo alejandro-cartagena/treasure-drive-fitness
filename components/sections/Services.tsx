@@ -2,16 +2,32 @@
 
 import { useInView } from "@/hooks/useInView";
 import { siteConfig } from "@/config/site";
+import Image from "next/image";
 import {
   FaArrowRight,
   FaDumbbell,
   FaHandsHelping,
-  FaImage,
   FaParking,
   FaUserTie,
   FaUsers,
   FaWater,
 } from "react-icons/fa";
+
+import treasureDriveFitnessEquipment from "@/public/images/treasure-drive-fitness-equipment-2.jpg";
+import treasureDriveFitnessGroupWorkout from "@/public/images/treasure-drive-fitness-group-workout.jpg";
+import treasureDriveFitnessPersonalTraining from "@/public/images/treasure-drive-fitness-personal-training.jpg";
+import treasureDriveFitnessParking from "@/public/images/treasure-drive-fitness-parking.jpg";
+import treasureDriveFitnessBayView from "@/public/images/treasure-drive-fitness-bay-view.jpg";
+import treasureDriveFitnessCommunity from "@/public/images/treasure-drive-fitness-community-2.jpg";
+
+const IMAGE_MAP = {
+  equipment: treasureDriveFitnessEquipment,
+  group: treasureDriveFitnessGroupWorkout,
+  personal: treasureDriveFitnessPersonalTraining,
+  parking: treasureDriveFitnessParking,
+  bay: treasureDriveFitnessBayView,
+  community: treasureDriveFitnessCommunity,
+} as const;
 
 const DELAY_CLASSES = ["", "delay-100", "delay-200", "delay-300", "delay-400", "delay-500"] as const;
 
@@ -34,17 +50,6 @@ function ServiceIcon({ icon }: { icon: string }) {
   }
 }
 
-function ImagePlaceholder() {
-  return (
-    <div
-      className="aspect-[4/3] w-full bg-surface-alt border border-dashed border-border flex flex-col items-center justify-center gap-2 text-text-muted"
-      aria-hidden="true"
-    >
-      <FaImage className="w-10 h-10 opacity-50" aria-hidden="true" />
-      <span className="text-xs font-medium uppercase tracking-widest">Photo coming soon</span>
-    </div>
-  );
-}
 
 export default function Services() {
   const [sectionRef, isInView] = useInView();
@@ -60,10 +65,10 @@ export default function Services() {
         {/* Section header */}
         <div className={`text-center mb-14 ${isInView ? "animate-fade-in-up" : "opacity-0"}`}>
           <p className="font-display text-accent text-lg tracking-[0.3em] uppercase mb-2">
-            What We Offer
+            Inside TD Fitness
           </p>
           <h2 className="font-display text-4xl md:text-6xl text-text-primary uppercase tracking-wide">
-            Our Services
+            Built For Every Goal
           </h2>
         </div>
 
@@ -74,11 +79,27 @@ export default function Services() {
               key={service.title}
               className={`
                 group bg-background border border-border overflow-hidden flex flex-col md:col-span-2
-                hover:border-accent hover:shadow-lg transition-all duration-300
                 ${isInView ? `animate-fade-in-up ${DELAY_CLASSES[i]}` : "opacity-0"}
               `}
+              style={{ transition: "box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease" }}
+              onMouseEnter={(e) => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.boxShadow = "0 8px 32px 0 rgba(220,38,38,0.2), 0 2px 8px 0 rgba(220,38,38,0.1)";
+                el.style.borderColor = "rgba(220,38,38,0.5)";
+                el.style.transform = "translateY(-3px)";
+              }}
+              onMouseLeave={(e) => {
+                const el = e.currentTarget as HTMLElement;
+                el.style.boxShadow = "none";
+                el.style.borderColor = "";
+                el.style.transform = "translateY(0)";
+              }}
             >
-              <ImagePlaceholder />
+              <Image
+                src={IMAGE_MAP[service.icon as keyof typeof IMAGE_MAP]}
+                alt={service.title}
+                className="aspect-[3/3] w-full object-cover"
+              />
               <div className="p-7 flex flex-col gap-4 flex-1">
                 <div className="text-accent group-hover:scale-110 transition-transform duration-200 w-fit">
                   <ServiceIcon icon={service.icon} />
@@ -87,13 +108,6 @@ export default function Services() {
                   {service.title}
                 </h3>
                 <p className="text-sm text-text-muted leading-relaxed flex-1">{service.description}</p>
-                <a
-                  href="/#pricing"
-                  className="mt-auto text-xs font-semibold uppercase tracking-widest text-accent hover:text-accent-hover transition-colors duration-150 flex items-center gap-1"
-                >
-                  Learn more
-                  <FaArrowRight className="w-3 h-3" aria-hidden="true" />
-                </a>
               </div>
             </div>
           ))}
