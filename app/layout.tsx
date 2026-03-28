@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, DM_Sans } from "next/font/google";
 import { siteConfig } from "@/config/site";
+import WhatsAppChatButton from "@/components/ui/WhatsAppIcon";
 import "./globals.css";
 
 const bebasNeue = Bebas_Neue({
@@ -33,6 +34,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-background text-text-primary font-sans">
         {children}
+        <WhatsAppChatButton />
       </body>
     </html>
   );

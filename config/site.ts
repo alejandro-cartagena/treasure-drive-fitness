@@ -23,9 +23,9 @@ export const siteConfig = {
   },
 
   navigation: [
-    { label: "About", href: "/#about" },
-    { label: "Pricing", href: "/#pricing" },
-    { label: "Our Gym", href: "/#our-gym" },
+    { label: "Home", href: "/" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "Our Gym", href: "/our-gym" },
   ],
   socials: [
     {

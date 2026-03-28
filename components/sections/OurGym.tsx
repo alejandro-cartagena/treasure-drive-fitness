@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useInView } from "@/hooks/useInView";
 import { siteConfig } from "@/config/site";
@@ -60,19 +60,14 @@ export default function OurGym() {
     return () => window.removeEventListener("keydown", handleKey);
   }, [lightboxIndex]);
 
-  const visibleItems = useMemo(() => {
-    return Array.from({ length: 3 }, (_, offset) => {
-      const index = (activeIndex + offset) % GYM_CAROUSEL_ITEMS.length;
-      return GYM_CAROUSEL_ITEMS[index];
-    });
-  }, [activeIndex]);
+  const STEP = 3;
 
   const goPrevious = () => {
-    setActiveIndex((current) => (current - 1 + GYM_CAROUSEL_ITEMS.length) % GYM_CAROUSEL_ITEMS.length);
+    setActiveIndex((current) => (current - STEP + GYM_CAROUSEL_ITEMS.length) % GYM_CAROUSEL_ITEMS.length);
   };
 
   const goNext = () => {
-    setActiveIndex((current) => (current + 1) % GYM_CAROUSEL_ITEMS.length);
+    setActiveIndex((current) => (current + STEP) % GYM_CAROUSEL_ITEMS.length);
   };
 
   return (
@@ -159,7 +154,7 @@ export default function OurGym() {
           <div className="max-w-[1600px] mx-auto">
             <div className="flex items-center justify-center mb-4">
               <h3 className="font-display text-2xl md:text-3xl uppercase tracking-wide text-text-inverse mt-6">
-                Gym Highlights
+                Gym Gallery
               </h3>
               
             </div>
@@ -183,29 +178,27 @@ export default function OurGym() {
               </button>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {visibleItems.map((item) => (
-                  <article
-                    key={item.label}
-                    className="relative overflow-hidden rounded-xl border border-border bg-surface group cursor-pointer"
-                    onClick={() => setLightboxIndex(GYM_CAROUSEL_ITEMS.indexOf(item))}
-                  >
-                    <div className="relative h-56 sm:h-64 md:h-96">
-                      <Image
-                        src={item.image}
-                        alt={item.imageAlt}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      />
-                    </div>
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
-                    <div className="absolute inset-0 p-5 flex flex-col justify-end">
-                      <p className="font-display text-xl sm:text-2xl uppercase tracking-wide text-text-inverse drop-shadow-lg">
-                        {item.label}
-                      </p>
-                    </div>
-                  </article>
-                ))}
+                {GYM_CAROUSEL_ITEMS.map((item, index) => {
+                  const slot = (index - activeIndex + GYM_CAROUSEL_ITEMS.length) % GYM_CAROUSEL_ITEMS.length;
+                  const isVisible = slot < STEP;
+                  return (
+                    <article
+                      key={item.label}
+                      className={`relative overflow-hidden rounded-xl border border-border bg-surface group cursor-pointer${isVisible ? "" : " hidden"}`}
+                      onClick={() => setLightboxIndex(index)}
+                    >
+                      <div className="relative h-56 sm:h-64 md:h-96 overflow-hidden">
+                        <Image
+                          src={item.image}
+                          alt={item.imageAlt}
+                          fill
+                          className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                      </div>
+                    </article>
+                  );
+                })}
               </div>
             </div>
 
@@ -255,10 +248,6 @@ export default function OurGym() {
           ))}
         </div>
 
-        {/* Photo credit note */}
-        <p className={`mt-6 text-xs text-text-muted text-center ${isInView ? "animate-fade-in delay-400" : "opacity-0"}`}>
-          Full media gallery coming soon — visit us in person at {siteConfig.location}
-        </p>
       </div>
 
       {/* Lightbox */}

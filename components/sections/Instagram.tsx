@@ -53,7 +53,7 @@ export default function Instagram() {
     <section
       id="instagram"
       ref={sectionRef as React.RefObject<HTMLElement>}
-      className="py-20 md:py-28 bg-background border-b border-border"
+      className="py-20 md:py-28 bg-surface border-b border-border"
       aria-label="Treasure Drive Fitness Instagram"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

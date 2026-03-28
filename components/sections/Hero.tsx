@@ -48,7 +48,7 @@ export default function Hero() {
             </span>
           ))}
         </h1>
-        <p className="animate-fade-in-up delay-200 text-lg md:text-xl text-text-inverse font-semibold max-w-xl mx-auto mb-10 leading-relaxed">
+        <p className="animate-fade-in-up delay-200 text-lg md:text-xl text-text-inverse uppercase tracking-[0.2em] font-semibold max-w-xl mx-auto mb-10 leading-relaxed">
           {siteConfig.description}
         </p>
         <div className="animate-fade-in-up delay-300 flex flex-col sm:flex-row items-center justify-center gap-4">

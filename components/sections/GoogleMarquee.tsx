@@ -181,7 +181,7 @@ function Avatar({ initials }: { initials: string }) {
 function ReviewCard({ review }: { review: GoogleReview }) {
   return (
     <article
-      className="flex w-[280px] shrink-0 flex-col rounded-2xl border border-border bg-background p-5 shadow-[0_1px_4px_rgba(0,0,0,0.06),0_4px_14px_rgba(0,0,0,0.04)] sm:w-[320px]"
+      className="flex w-[280px] shrink-0 flex-col rounded-2xl border border-border bg-surface p-5 shadow-[0_1px_4px_rgba(0,0,0,0.06),0_4px_14px_rgba(0,0,0,0.04)] sm:w-[320px]"
       aria-label={`Review by ${review.name}`}
     >
       <div className="mb-3 flex items-center justify-between gap-4">
@@ -235,7 +235,7 @@ export default function GoogleMarquee() {
   return (
     <section
       id="google-reviews"
-      className="relative w-full overflow-hidden bg-surface py-16 md:py-20 border-y border-border"
+      className="relative w-full overflow-hidden bg-background py-16 md:py-20 border-y border-border"
     >
       <div className="mx-auto max-w-3xl px-4 sm:px-6 text-center">
         <span className="font-display text-accent text-lg tracking-[0.3em] uppercase mb-2">
@@ -248,7 +248,7 @@ export default function GoogleMarquee() {
           See why members choose {name} to crush their fitness goals — straight from Google Reviews.
         </p>
 
-        <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-border bg-background px-5 py-2.5 shadow-sm">
+        <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-border bg-surface px-5 py-2.5 shadow-sm">
           <GoogleLogo />
           <div className="flex items-center gap-1.5">
             <StarRating rating={Math.round(rating)} />

@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { siteConfig } from "@/config/site";
 import type { SocialLink } from "@/types/social";
@@ -33,11 +34,14 @@ function SocialIcon({ platform }: { platform: SocialLink["platform"] }) {
 const MD_QUERY = "(min-width: 768px)";
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
 
-  const showSolid = !isDesktop || scrolled || isOpen;
+  const showSolid = !isHome || !isDesktop || scrolled || isOpen;
 
   useLayoutEffect(() => {
     const mq = window.matchMedia(MD_QUERY);
@@ -55,6 +59,7 @@ export default function Navbar() {
   }, []);
 
   return (
+    <>
     <header
       className={
         showSolid
@@ -81,19 +86,26 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
-          {siteConfig.navigation.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className={
-                showSolid
-                  ? "text-sm font-medium text-text-secondary hover:text-accent transition-colors duration-150 tracking-wide uppercase"
-                  : "text-sm font-medium text-text-inverse hover:text-accent transition-colors duration-150 tracking-wide uppercase"
-              }
-            >
-              {item.label}
-            </a>
-          ))}
+          {siteConfig.navigation.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <a
+                key={item.label}
+                href={item.href}
+                aria-current={isActive ? "page" : undefined}
+                className={[
+                  "text-sm font-medium tracking-wide uppercase transition-colors duration-150 border-b-2 pb-0.5",
+                  isActive
+                    ? "text-accent border-accent"
+                    : showSolid
+                    ? "text-text-secondary hover:text-accent border-transparent hover:border-accent"
+                    : "text-text-inverse hover:text-accent border-transparent hover:border-accent",
+                ].join(" ")}
+              >
+                {item.label}
+              </a>
+            );
+          })}
         </div>
 
         {/* Desktop right side */}
@@ -161,16 +173,25 @@ export default function Navbar() {
       {/* Mobile menu */}
       {isOpen && (
         <div className="md:hidden bg-background/95 backdrop-blur-md border-t border-border px-4 pt-4 pb-6 flex flex-col gap-4">
-          {siteConfig.navigation.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              onClick={() => setIsOpen(false)}
-              className="text-base font-medium text-text-secondary hover:text-accent transition-colors duration-150 tracking-wide uppercase py-1"
-            >
-              {item.label}
-            </a>
-          ))}
+          {siteConfig.navigation.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <a
+                key={item.label}
+                href={item.href}
+                onClick={() => setIsOpen(false)}
+                aria-current={isActive ? "page" : undefined}
+                className={[
+                  "text-base font-medium tracking-wide uppercase py-1 transition-colors duration-150 border-l-2 pl-3",
+                  isActive
+                    ? "text-accent border-accent"
+                    : "text-text-secondary hover:text-accent border-transparent",
+                ].join(" ")}
+              >
+                {item.label}
+              </a>
+            );
+          })}
           <div className="flex items-center gap-4 pt-2">
             {siteConfig.socials.map((social) => (
               <a
@@ -195,5 +216,7 @@ export default function Navbar() {
         </div>
       )}
     </header>
+    {!isHome && <div className="h-20" aria-hidden="true" />}
+  </>
   );
 }

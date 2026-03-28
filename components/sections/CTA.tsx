@@ -58,7 +58,8 @@ export default function CTA() {
         >
           <a
             href="/#pricing"
-            className="inline-flex items-center justify-center px-10 py-4 bg-background text-accent text-sm font-semibold uppercase tracking-widest hover:bg-surface transition-colors duration-200 w-full sm:w-auto"
+            className="inline-flex items-center justify-center px-10 py-4 bg-background text-accent text-sm font-semibold uppercase tracking-widest transition-colors duration-200 w-full sm:w-auto hover:bg-gray-300"
+            style={{ transitionProperty: "background-color" }}
           >
             Get Started
           </a>
