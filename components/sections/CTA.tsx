@@ -4,7 +4,7 @@ import { useInView } from "@/hooks/useInView";
 import { siteConfig } from "@/config/site";
 
 export default function CTA() {
-  const [sectionRef, isInView] = useInView({ threshold: 0.2 });
+  const [sectionRef, isInView] = useInView({ threshold: 0.1 });
 
   return (
     <section
