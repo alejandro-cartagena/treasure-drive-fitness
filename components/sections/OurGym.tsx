@@ -287,7 +287,7 @@ export default function OurGym() {
               priority
             />
             <p className="text-center text-white/70 text-sm mt-3 uppercase tracking-widest">
-              {GYM_CAROUSEL_ITEMS[lightboxIndex].label} &mdash; {lightboxIndex + 1} / {GYM_CAROUSEL_ITEMS.length}
+              {lightboxIndex + 1} / {GYM_CAROUSEL_ITEMS.length}
             </p>
           </div>
 
