@@ -163,7 +163,7 @@ export default function OurGym() {
               <button
                 type="button"
                 onClick={goPrevious}
-                className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full border border-white/30 bg-black/40 text-text-inverse hover:border-accent hover:bg-black/60 transition-colors duration-200 flex items-center justify-center"
+                className="absolute cursor-pointer left-2 sm:left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full border border-white/30 bg-black/40 text-text-inverse hover:border-accent hover:bg-black/60 transition-colors duration-200 flex items-center justify-center"
                 aria-label="Show previous gym image"
               >
                 <FaChevronLeft className="w-4 h-4" aria-hidden="true" />
@@ -171,7 +171,7 @@ export default function OurGym() {
               <button
                 type="button"
                 onClick={goNext}
-                className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full border border-white/30 bg-black/40 text-text-inverse hover:border-accent hover:bg-black/60 transition-colors duration-200 flex items-center justify-center"
+                className="absolute cursor-pointer right-2 sm:right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full border border-white/30 bg-black/40 text-text-inverse hover:border-accent hover:bg-black/60 transition-colors duration-200 flex items-center justify-center"
                 aria-label="Show next gym image"
               >
                 <FaChevronRight className="w-4 h-4" aria-hidden="true" />
@@ -192,7 +192,7 @@ export default function OurGym() {
                           src={item.image}
                           alt={item.imageAlt}
                           fill
-                          className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                          className="object-cover cursor-pointer transition-transform duration-500 ease-out group-hover:scale-110"
                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         />
                       </div>
@@ -220,23 +220,18 @@ export default function OurGym() {
         </div>
 
         {/* Stats row */}
-        {/* <div
-          className={`mt-12 grid grid-cols-2 md:grid-cols-3 gap-6 ${
+        <div
+          className={`mt-12 grid grid-cols-1 justify-items-center gap-6 md:grid-cols-2 md:justify-items-stretch ${
             isInView ? "animate-fade-in-up delay-300" : "opacity-0"
           }`}
         >
           {[
-            { value: "5,000+", label: "Sq Ft" },
             { value: "50+", label: "Equipment Pieces" },
             { value: "24/7", label: "Hours of Operation" },
-          ].map((stat, i, arr) => (
+          ].map((stat) => (
             <div
               key={stat.label}
-              className={`text-center border border-border p-5 ${
-                i === arr.length - 1
-                  ? "col-span-2 md:col-span-1 max-w-[calc(50%-12px)] md:max-w-none w-full mx-auto"
-                  : ""
-              }`}
+              className="text-center border border-border p-5 w-full max-w-sm md:max-w-none"
             >
               <div className="font-display text-3xl md:text-4xl text-accent tracking-wide">
                 {stat.value}
@@ -246,7 +241,7 @@ export default function OurGym() {
               </div>
             </div>
           ))}
-        </div> */}
+        </div>
 
       </div>
 
@@ -258,7 +253,7 @@ export default function OurGym() {
         >
           <button
             type="button"
-            className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/60 border border-white/20 text-white flex items-center justify-center hover:bg-black/80 transition-colors"
+            className="absolute cursor-pointer top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/60 border border-white/20 text-white flex items-center justify-center hover:border-accent transition-colors"
             onClick={(e) => { e.stopPropagation(); setLightboxIndex(null); }}
             aria-label="Close lightbox"
           >
@@ -267,7 +262,7 @@ export default function OurGym() {
 
           <button
             type="button"
-            className="absolute left-4 z-10 w-10 h-10 rounded-full bg-black/60 border border-white/20 text-white flex items-center justify-center hover:border-accent transition-colors"
+            className="absolute cursor-pointer left-4 z-10 w-10 h-10 rounded-full bg-black/60 border border-white/20 text-white flex items-center justify-center hover:border-accent transition-colors"
             onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex - 1 + GYM_CAROUSEL_ITEMS.length) % GYM_CAROUSEL_ITEMS.length); }}
             aria-label="Previous image"
           >
@@ -293,7 +288,7 @@ export default function OurGym() {
 
           <button
             type="button"
-            className="absolute right-4 z-10 w-10 h-10 rounded-full bg-black/60 border border-white/20 text-white flex items-center justify-center hover:border-accent transition-colors"
+            className="absolute cursor-pointer right-4 z-10 w-10 h-10 rounded-full bg-black/60 border border-white/20 text-white flex items-center justify-center hover:border-accent transition-colors"
             onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex + 1) % GYM_CAROUSEL_ITEMS.length); }}
             aria-label="Next image"
           >
