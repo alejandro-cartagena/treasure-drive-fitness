@@ -220,7 +220,7 @@ export default function OurGym() {
         </div>
 
         {/* Stats row */}
-        <div
+        {/* <div
           className={`mt-12 grid grid-cols-2 md:grid-cols-3 gap-6 ${
             isInView ? "animate-fade-in-up delay-300" : "opacity-0"
           }`}
@@ -246,7 +246,7 @@ export default function OurGym() {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
 
       </div>
 
