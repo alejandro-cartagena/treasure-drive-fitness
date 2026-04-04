@@ -18,7 +18,7 @@ export default function Hero() {
         muted
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-55"
+        className="absolute inset-0 w-full h-full object-cover opacity-70"
         aria-hidden="true"
       >
         <source src="/videos/treasure-drive-fitness-hero.mp4" type="video/mp4" />
@@ -38,17 +38,26 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
-        <p className="animate-fade-in font-display text-accent text-xl md:text-2xl tracking-[0.2em] uppercase mb-4">
+        <p
+          className="animate-fade-in font-display text-accent text-xl md:text-2xl tracking-[0.2em] uppercase mb-4"
+          style={{ textShadow: "0 1px 4px rgba(0, 0, 0, 0.7)" }}
+        >
           {siteConfig.location}
         </p>
-        <h1 className="animate-fade-in-up delay-100 font-display text-6xl sm:text-7xl md:text-8xl text-text-inverse uppercase leading-none tracking-widest mb-6">
+        <h1
+          className="animate-fade-in-up delay-100 font-display text-6xl sm:text-7xl md:text-8xl text-text-inverse uppercase leading-none tracking-widest mb-6"
+          style={{ textShadow: "0 2px 8px rgba(0, 0, 0, 0.75)" }}
+        >
           {siteConfig.tagline.map((line, i) => (
             <span key={i} className="block">
               {line}
             </span>
           ))}
         </h1>
-        <p className="animate-fade-in-up delay-200 text-lg md:text-xl text-text-inverse uppercase tracking-[0.2em] font-semibold max-w-xl mx-auto mb-10 leading-relaxed">
+        <p
+          className="animate-fade-in-up delay-200 text-lg md:text-xl text-text-inverse uppercase tracking-[0.2em] font-semibold max-w-xl mx-auto mb-10 leading-relaxed"
+          style={{ textShadow: "0 1px 6px rgba(0, 0, 0, 0.7)" }}
+        >
           {siteConfig.description}
         </p>
         <div className="animate-fade-in-up delay-300 flex flex-col sm:flex-row items-center justify-center gap-4">
